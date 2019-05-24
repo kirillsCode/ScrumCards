@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.contrib.staticfiles import views
+from django.urls import re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('scrumboard/', include('scrumboard.urls'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^static/(?P<path>.*)$', views.serve),
+    ]
+
+
