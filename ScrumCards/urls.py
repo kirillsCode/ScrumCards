@@ -18,10 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.contrib.staticfiles import views
 from django.urls import re_path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('scrumboard/', include('scrumboard.urls'))
+    path('scrumboard/', include('scrumboard.urls')),
+    path('', TemplateView.as_view(template_name="scrumboard/home.html"))
 ]
 
 if settings.DEBUG:
