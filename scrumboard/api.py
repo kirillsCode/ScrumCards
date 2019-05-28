@@ -7,13 +7,16 @@ from .serializers import ListSerializer, CardSerializer
 
 class ListViewSet(ModelViewSet):
 
-    queryset = List.objects.all()
+    # nested query to display only lists which have cards with business value more then 10
+    _query = "select * from scrumboard_list where id in (" \
+             "select list_id from scrumboard_card where business_values > 10);"
+    queryset = List.objects.raw(_query)
     serializer_class = ListSerializer
 
 
 class CardViewSet(ModelViewSet):
-
-    queryset = Card.objects.all()
+    _query = "select title, description from scrumboard_card;"
+    queryset = Card.objects.raw(_query)
     serializer_class = CardSerializer
 
 

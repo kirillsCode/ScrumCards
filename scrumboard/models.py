@@ -14,7 +14,7 @@ class List(models.Model):
 class Card(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    list = models.ForeignKey("List", models.CASCADE, related_name="cards")
+    list = models.ForeignKey(List, models.CASCADE, related_name="cards")
     story_points = models.IntegerField(null=True, blank=True)
     business_values = models.IntegerField(null=True, blank=True)
 

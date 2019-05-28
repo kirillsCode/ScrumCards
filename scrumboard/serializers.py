@@ -13,7 +13,8 @@ class CardSerializer(serializers.ModelSerializer):
 
 class ListSerializer(serializers.ModelSerializer):
 
-    cards = serializers.StringRelatedField(many=True)
+    #cards = serializers.RelatedField(many=True, read_only=True)
+    cards = CardSerializer(many=True, read_only=True)
 
     class Meta:
 
